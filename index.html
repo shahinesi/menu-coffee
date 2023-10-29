@@ -6,9 +6,12 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link rel="icon" type="image/x-icon" href="asset/favicon.ico">
+    <meta name="theme-color" content="#171928" />
     <title>atacoffee</title>
-    <link href="style.css" rel="stylesheet"  media="all">
-    <link href="swiper.min.css" rel="stylesheet"  media="all">
+    <link href="asset/css/style.css" rel="stylesheet" media="all">
+    <link href="asset/css/swiper.min.css" rel="stylesheet" media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css" rel="stylesheet" media="all">
+    <link href="asset/css/bootstrap.min.css" rel="stylesheet" media="all">
 </head>
 
 <body>
@@ -70,7 +73,7 @@
 
                     <div class="product-slider__item swiper-slide" data-target="Latte">
                         <div class="product-slider__card">
-                            <img src="https://res.cloudinary.com/muhammederdem/image/upload/q_60/v1536405223/starwars/item-4-bg.webp"
+                            <img src="asset/item-4-bg.webp"
                                 alt="star wars" class="product-slider__cover" loading="lazy">
                             <div class="product-slider__content">
                                 <h1 class="product-slider__title">Latte</h1>
@@ -128,7 +131,7 @@
                                 </div>
 
                                 <div class="product-slider__bottom">
-                                    <button class="product-slider__cart">
+                                    <button class="product-slider__cart default-btn" data-name="Latte" data-price="35000">
                                         ADD TO CART
                                     </button>
 
@@ -199,7 +202,7 @@
                                 </div>
 
                                 <div class="product-slider__bottom">
-                                    <button class="product-slider__cart">
+                                    <button class="product-slider__cart default-btn" data-name="Mocha" data-price="40000">
                                         ADD TO CART
                                     </button>
 
@@ -271,7 +274,7 @@
                                 </div>
 
                                 <div class="product-slider__bottom">
-                                    <button class="product-slider__cart">
+                                    <button class="product-slider__cart default-btn" data-name="Americano" data-price="25000">
                                         ADD TO CART
                                     </button>
 
@@ -342,7 +345,7 @@
                                 </div>
 
                                 <div class="product-slider__bottom">
-                                    <button class="product-slider__cart">
+                                    <button class="product-slider__cart default-btn" data-name="Cappuccino" data-price="35000">
                                         ADD TO CART
                                     </button>
 
@@ -413,7 +416,7 @@
                                 </div>
 
                                 <div class="product-slider__bottom">
-                                    <button class="product-slider__cart">
+                                    <button class="product-slider__cart default-btn" data-name="Caramel Macchiato" data-price="40000">
                                         ADD TO CART
                                     </button>
 
@@ -484,7 +487,7 @@
                                 </div>
 
                                 <div class="product-slider__bottom">
-                                    <button class="product-slider__cart">
+                                    <button class="product-slider__cart default-btn" data-name="Espresso Double" data-price="25000">
                                         ADD TO CART
                                     </button>
 
@@ -502,6 +505,15 @@
 
     </div>
 
+    <button type="button" class="btn btn-success fab-wrapper my-2 my-sm-0" data-toggle="modal"
+        data-target="#staticBackdrop" style="color: white;">
+        <label class="fab" for="fabCheckbox">
+            <i class="fas fa-shopping-cart total-count"></i>
+        </label>
+    </button>
+
+    </div>
+
     <svg class="hidden" hidden style="display: none;">
         <symbol id="icon-arrow-left" viewBox="0 0 32 32">
             <path
@@ -515,10 +527,38 @@
         </symbol>
     </svg>
 
-    <script src="jquery.min.js"></script>
-    <script src="swiper.min.js"></script>
-    <script src="script.js"></script>
-    <script src="main.js"></script>
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Your Cart</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="show-cart table">
+
+                    </table>
+                    <div class="grand-total d-none"> : <span class="total-cart"></span></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="product-slider__cart" style="background-image: linear-gradient(-45deg, #607D8B 0%, #9E9E9E 100%);" data-dismiss="modal">CLOSE</button>
+                    <button type="button" class="product-slider__cart" data-dismiss="modal" onclick="order()">ORDER</button>
+                    <!-- <button type="button" class="btn btn-danger clear-all">Clear All</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="asset/js/jquery.min.js"></script>
+    <script src="asset/js/swiper.min.js"></script>
+    <script src="asset/js/bootstrap.min.js"></script>
+    <script src="asset/js/bootstrap.bundle.min.js"></script>
+    <script src="asset/js/script.js"></script>
+    <script src="asset/js/main.js"></script>
 </body>
 
 </html>
