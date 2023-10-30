@@ -30,8 +30,14 @@
             console.groupEnd();
     }));
 
-    if (localStorage.getItem('fullName') == null)
-        localStorage.setItem('fullName', prompt('لطفا نام و نام خانوادگی خود را وارد کنید'))
+    if (localStorage.getItem('fullName') == null) {
+        var fullName;
+        fullName = prompt('لطفا نام و نام خانوادگی خود را وارد کنید');
+        if (input === null) {
+            return; //break out of the function early
+        }
+        localStorage.setItem('fullName', fullName)
+    }
 
 })();
 
