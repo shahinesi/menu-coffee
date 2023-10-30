@@ -3,44 +3,6 @@
 * License: -
 */
 
-(function () {
-    "use strict";
-    /**
-   * Easy selector helper function
-   */
-    const select = (el, all = false) => {
-        el = el.trim()
-        if (all) {
-            return [...document.querySelectorAll(el)]
-        } else {
-            return document.querySelector(el)
-        }
-    }
-
-    document.addEventListener("DOMContentLoaded", (function () {
-        console.log(
-            '░██████╗██╗░░██╗░█████╗░██╗░░██╗██╗███╗░░██╗  ███████╗░██████╗██╗░░██╗░█████╗░███╗░░██╗██████╗░░█████╗░██████╗░██╗\n' +
-            '██╔════╝██║░░██║██╔══██╗██║░░██║██║████╗░██║  ██╔════╝██╔════╝██║░██╔╝██╔══██╗████╗░██║██╔══██╗██╔══██╗██╔══██╗██║\n' +
-            '╚█████╗░███████║███████║███████║██║██╔██╗██║  █████╗░░╚█████╗░█████═╝░███████║██╔██╗██║██║░░██║███████║██████╔╝██║\n' +
-            '░╚═══██╗██╔══██║██╔══██║██╔══██║██║██║╚████║  ██╔══╝░░░╚═══██╗██╔═██╗░██╔══██║██║╚████║██║░░██║██╔══██║██╔══██╗██║\n' +
-            '██████╔╝██║░░██║██║░░██║██║░░██║██║██║░╚███║  ███████╗██████╔╝██║░╚██╗██║░░██║██║░╚███║██████╔╝██║░░██║██║░░██║██║\n' +
-            '╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝╚═╝╚═╝░░╚══╝  ╚══════╝╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝'),
-            console.group("%cWelcome My Friend", "color: #41b883;"),
-            console.log('If you in the devtools, so probably you a developer.\n"imshahineskandari@gmail.com" this is my email.\nPlease contact me, This is the best way to support me.'),
-            console.groupEnd();
-    }));
-
-    if (localStorage.getItem('fullName') == null) {
-        var fullName;
-        fullName = prompt('لطفا نام و نام خانوادگی خود را وارد کنید');
-        if (input === null) {
-            return; //break out of the function early
-        }
-        localStorage.setItem('fullName', fullName)
-    }
-
-})();
-
 var product_list = "", all_price = "";
 var shoppingCart = (function () {
 
@@ -228,34 +190,70 @@ $('.tab ul.tabs li a').on('click', function (g) {
 });
 
 function order() {
-    let date = new Date();
-    fetch('https://api2.ippanel.com/api/v1/sms/pattern/normal/send', {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json',
-            'apikey': '4CPakLLDLFyexs7yOJ2eVgG44P8QYL7gQoq4X4JN5ng=',
-        },
-        body: JSON.stringify({
-            "code": "f5ouv4vo5tiaa0j",
-            "sender": "+9890002731",
-            "recipient": "09356737133",
-            "variable": {
-                "name": localStorage.getItem('fullName'),
-                "date": "تاریخ " + date.toLocaleDateString('fa-IR') + " و در ساعت " + date.getHours() + ":" + date.getMinutes(),
-                "product_list": product_list,
-                "price": all_price
-            }
+    if (localStorage.getItem('fullName') == null || localStorage.getItem('fullName') == "null") {
+        localStorage.setItem('fullName', prompt('لطفا نام و نام خانوادگی خود را وارد کنید'))
+    } else {
+        let date = new Date();
+        fetch('https://api2.ippanel.com/api/v1/sms/pattern/normal/send', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+                'apikey': '4CPakLLDLFyexs7yOJ2eVgG44P8QYL7gQoq4X4JN5ng=',
+            },
+            body: JSON.stringify({
+                "code": "f5ouv4vo5tiaa0j",
+                "sender": "+9890002731",
+                "recipient": "09356737133",
+                "variable": {
+                    "name": localStorage.getItem('fullName'),
+                    "date": "تاریخ " + date.toLocaleDateString('fa-IR') + " و در ساعت " + date.getHours() + ":" + date.getMinutes(),
+                    "product_list": product_list,
+                    "price": all_price
+                }
+            })
         })
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.code == 200) {
-                shoppingCart.clearCart();
-                displayCart();
-                alert('سفارش شما با موفقیت ثبت شد');
-            }
-            else {
-                alert('خطا در ثبت سفارش، مجددا تلاش کنید');
-            }
-        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.code == 200) {
+                    shoppingCart.clearCart();
+                    displayCart();
+                    alert('سفارش شما با موفقیت ثبت شد');
+                }
+                else {
+                    alert('خطا در ثبت سفارش، مجددا تلاش کنید');
+                }
+            })
+    }
 }
+
+(function () {
+    "use strict";
+    /**
+   * Easy selector helper function
+   */
+    const select = (el, all = false) => {
+        el = el.trim()
+        if (all) {
+            return [...document.querySelectorAll(el)]
+        } else {
+            return document.querySelector(el)
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", (function () {
+        console.log(
+            '░██████╗██╗░░██╗░█████╗░██╗░░██╗██╗███╗░░██╗  ███████╗░██████╗██╗░░██╗░█████╗░███╗░░██╗██████╗░░█████╗░██████╗░██╗\n' +
+            '██╔════╝██║░░██║██╔══██╗██║░░██║██║████╗░██║  ██╔════╝██╔════╝██║░██╔╝██╔══██╗████╗░██║██╔══██╗██╔══██╗██╔══██╗██║\n' +
+            '╚█████╗░███████║███████║███████║██║██╔██╗██║  █████╗░░╚█████╗░█████═╝░███████║██╔██╗██║██║░░██║███████║██████╔╝██║\n' +
+            '░╚═══██╗██╔══██║██╔══██║██╔══██║██║██║╚████║  ██╔══╝░░░╚═══██╗██╔═██╗░██╔══██║██║╚████║██║░░██║██╔══██║██╔══██╗██║\n' +
+            '██████╔╝██║░░██║██║░░██║██║░░██║██║██║░╚███║  ███████╗██████╔╝██║░╚██╗██║░░██║██║░╚███║██████╔╝██║░░██║██║░░██║██║\n' +
+            '╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝╚═╝╚═╝░░╚══╝  ╚══════╝╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝╚═╝'),
+            console.group("%cWelcome My Friend", "color: #41b883;"),
+            console.log('If you in the devtools, so probably you a developer.\n"imshahineskandari@gmail.com" this is my email.\nPlease contact me, This is the best way to support me.'),
+            console.groupEnd();
+    }));
+
+    if (localStorage.getItem('fullName') == null || localStorage.getItem('fullName') == "null")
+        localStorage.setItem('fullName', prompt('لطفا نام و نام خانوادگی خود را وارد کنید'))
+
+})();
