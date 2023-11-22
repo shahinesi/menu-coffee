@@ -261,5 +261,4 @@ function order() {
         localStorage.setItem('fullName', prompt('لطفا نام و نام خانوادگی خود را وارد کنید'))
     if (localStorage.getItem('phone') == null || localStorage.getItem('phone') == "null")
         localStorage.setItem('phone', prompt('لطفا شماره همراه خود را وارد کنید'))
-
 })();
