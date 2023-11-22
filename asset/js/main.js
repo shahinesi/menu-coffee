@@ -192,10 +192,11 @@ $('.tab ul.tabs li a').on('click', function (g) {
 function order() {
     if (localStorage.getItem('fullName') == null || localStorage.getItem('fullName') == "null") {
         localStorage.setItem('fullName', prompt('لطفا نام و نام خانوادگی خود را وارد کنید'))
-    } else if (localStorage.getItem('Phone') == null || localStorage.getItem('Phone') == "null") {
-        localStorage.setItem('Phone', prompt('لطفا شماره همراه خود را وارد کنید'))
+    } else if (localStorage.getItem('phone') == null || localStorage.getItem('phone') == "null") {
+        localStorage.setItem('phone', prompt('لطفا شماره همراه خود را وارد کنید'))
     } else {
         let date = new Date();
+        console.log(localStorage.getItem('phone'))
         fetch('https://api2.ippanel.com/api/v1/sms/pattern/normal/send', {
             method: 'POST',
             headers: {
@@ -211,7 +212,7 @@ function order() {
                     "date": "تاریخ " + date.toLocaleDateString('fa-IR') + " و در ساعت " + date.getHours() + ":" + date.getMinutes(),
                     "product_list": product_list,
                     "price": all_price,
-                    "phone": localStorage.getItem('phone')
+                    "phone": localStorage.getItem('phone').toString()
                 }
             })
         })
@@ -258,7 +259,7 @@ function order() {
 
     if (localStorage.getItem('fullName') == null || localStorage.getItem('fullName') == "null")
         localStorage.setItem('fullName', prompt('لطفا نام و نام خانوادگی خود را وارد کنید'))
-    if (localStorage.getItem('Phone') == null || localStorage.getItem('Phone') == "null")
-        localStorage.setItem('Phone', prompt('لطفا شماره همراه خود را وارد کنید'))
+    if (localStorage.getItem('phone') == null || localStorage.getItem('phone') == "null")
+        localStorage.setItem('phone', prompt('لطفا شماره همراه خود را وارد کنید'))
 
 })();
